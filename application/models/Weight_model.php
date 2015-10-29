@@ -7,7 +7,7 @@ class Weight_model extends CI_Model {
   }
 
   public function get_all() {
-    $query = $this->db->query("SELECT name, description FROM lifts");
+    $query = $this->db->query("SELECT name, description, variant FROM lifts");
     return $query->result_array();
   }
 

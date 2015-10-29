@@ -1,10 +1,13 @@
-
+drop table if exists workouts;
+drop table if exists users;
+drop table if exists lifts;
 
 /*Ex. [1, Squat, Best lift there is],
 [2, Curls in the Squat Rack, .....] */
 CREATE TABLE lifts (
   lift_id serial PRIMARY KEY,
   name varchar(255),
+  variant varchar(255),
   description varchar(255)
 );
 
@@ -16,7 +19,7 @@ CREATE TABLE users (
 );
 
 /*Anything else to add here?*/
-CREATE TABLE workout (
+CREATE TABLE workouts (
   workout_id serial PRIMARY KEY,
   user_id serial REFERENCES users,
   lift_id serial REFERENCES lifts,
