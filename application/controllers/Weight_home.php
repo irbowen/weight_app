@@ -8,6 +8,7 @@
     }
 
     public function index()	{
+      $this->load->helper('url');
       $this->load->view('weight_app/header');
       $this->load->model('weight_model');
       $this->data['lifts'] = $this->weight_model->get_all();
