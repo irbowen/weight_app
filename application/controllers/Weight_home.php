@@ -1,5 +1,5 @@
 <?php
-  class Welcome extends CI_Controller {
+  class Weight_home extends CI_Controller {
 
     private $data;
 
@@ -8,9 +8,11 @@
     }
 
     public function index()	{
+      $this->load->view('weight_app/header');
       $this->load->model('weight_model');
       $this->data['lifts'] = $this->weight_model->get_all();
-      $this->load->view('lifts', $this->data);
+      $this->load->view('weight_app/lifts', $this->data);
+      $this->load->view('weight_app/footer');
     }
 
 }
