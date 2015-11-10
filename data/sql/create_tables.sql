@@ -13,7 +13,7 @@ CREATE TABLE lifts (
 
 /*Will have to chagne after fb login is done*/
 CREATE TABLE users (
-  user_Id serial PRIMARY KEY,
+  user_id serial PRIMARY KEY,
   name varchar(255),
   facebook_id varchar(255)
 );
