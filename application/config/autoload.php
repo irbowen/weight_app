@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//My additions
+$autoload['config'] = array( 'facebook' );
+//End my additions
+
+
 /*
 | -------------------------------------------------------------------
 | AUTO-LOADER
