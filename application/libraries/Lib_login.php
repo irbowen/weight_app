@@ -52,7 +52,7 @@ class Lib_login
         FacebookSession::setDefaultApplication($facebook_app_id, $facebook_api_secret);
 
         // login helper with redirect_uri
-        $helper = new FacebookRedirectLoginHelper(site_url('login/facebook'));
+        $helper = new FacebookRedirectLoginHelper(site_url('Weight_home'));
         // see if a existing session exists
         if (isset($_SESSION) && isset($_SESSION['fb_token'])) {
             // create new session from saved access_token

@@ -20,7 +20,8 @@ class Login extends CI_Controller
 
         // check login data
         if (isset($fb_data['me'])) {
-            var_dump($fb_data);
+            //print_r($fb_data);
+            echo "Hello, " . $fb_data['me']['name'] . ", your id is : " . $fb_data['me']['id'] . "<br/>";
         } else {
             echo '<a href="' . $fb_data['loginUrl'] . '">Login</a>';
         }
