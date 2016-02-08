@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>ALBUMS</h1>
+    <p class="important">
+      Welcome, {{username}}!
+    </p>
+
+    {% if logged_in %}
+      This only shows up if you are logged in!
+      {% include "navbar.html" %}
+    {% endif %}
+
+
+    <table class="table table-bordered table-striped">
+    <tr> 
+      <td> Title </td> 
+      {% if edit %}
+      <td> Edit Url </td> <td> Delete </td>
+      {% endif %}
+    </tr>
+    {% for value in data %}
+      <tr> 
+        <td> <a href="{{ url_for('album.album_route', id = value.albumid) }}"
+            id="album_{{value.albumid}}_link"> {{value.title}} </a> </td>
+    {% if edit %}
+    <td> <a href="{{ url_for('album.album_edit_route', id = value.albumid) }}" id="album_edit_{{value.albumid}}_link"> [Edit] </a></td>
+        <td>
+            <form action="" method="POST">
+            <input type="hidden" name="albumid" value="{{value.albumid}}" />
+            <input type="submit" id="delete_album_{{value.albumid}}" name="op" value="delete" />
+            </form>
+        
+        </td>
+    {% endif %}
+      </tr>
+    {% endfor %}
+    {% if edit %}
+        <tr><td>
+            <form action="" method="POST">
+            <input type="text" id="album_add_name" name="title" value=""/>
+            <input type="hidden" name="username" value="{{username}}" />
+            <input type="submit" id="album_add_submit" name="op" value="add" />
+            </form>
+        </td></tr>
+    {% endif %}
+    </tr>
+    </table>
+    {% if not edit %}
+      <br/>
+      <a href="{{ url_for('albums.albums_edit_route') }}"
+        id="user_albums_edit_{{username}}"> Albums Edit </a>
+    {% endif %}
+{% endblock %}

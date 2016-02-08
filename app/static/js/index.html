@@ -1,0 +1,21 @@
+<!doctype html>
+
+<html ng-app="myApp">
+  
+  <head>
+    <title>My Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="app.js"></script>
+  </head>
+  
+  <body ng-controller="myController">
+    <h1> This is my app </h1> 
+    <p> {{msg}} </p>
+    <ul>
+      <li ng-repeat="lift in lifts">
+        {{ lift.name }}
+      </li>
+    </ul>
+  </body>
+
+</html>
