@@ -10,5 +10,12 @@ def get_lifts_route():
   cur = db.get_cursor()
   cur.execute("SELECT name FROM lifts ORDER BY lift_id")
   lift_names = cur.fetchall()
-  print lift_names
+  return json.dumps(lift_names)
+
+@lifts.route('/lifts/desc')
+def get_lifts_desc_route():
+  """ Return all of the primary lists  with their description"""
+  cur = db.get_cursor()
+  cur.execute("SELECT name, description FROM lifts ORDER BY lift_id")
+  lift_names = cur.fetchall()
   return json.dumps(lift_names)

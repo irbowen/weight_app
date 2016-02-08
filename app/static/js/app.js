@@ -6,19 +6,27 @@ app.controller('myController', function($scope, $http) {
 
   $scope.get_lifts = function() {
     $http.get('http://localhost:4000/api/lifts').then(
-    	function(results) {
-        console.log("Getting data");
-    		console.log(results.data);
+      function(results) {
         $scope.lifts = results.data;
-    	},
-    	function (error) {
-    		console.log("error");
-    	}
+      },
+      function (error) {
+        console.log("error");
+      }
+    );
+  }
+
+  $scope.get_lifts_description = function() {
+    $http.get('http://localhost:4000/api/lifts/desc').then(
+      function(results) {
+        $scope.lifts_desc = results.data;
+      },
+      function (error) {
+        console.log("error");
+      }
     );
   }
 
   $scope.get_lifts();
-  console.log("Scope: " );
-  console.log($scope.lifts);
+  $scope.get_lifts_description();
 
 });
