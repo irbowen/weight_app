@@ -4,17 +4,22 @@
   
   <head>
     <title>My Angular App</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
-    <script src="app.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"> </script>
+    <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
+    
+    <script src="app/app.js"></script>
   </head>
   
   <body ng-controller="myController">
-    <h1> This is my app </h1> 
+  
+  <button class="btn btn-primary" ng-click="login()" ng-disabled="loginStatus.status == 'connected'">Connect with Facebook</button>
+
     <p> {{msg}} </p>
     <ul>
       <li ng-repeat="lift in lifts">
         {{ lift.name }}
       </li>
+      <h3> Lift Descriptions </h3>
       <li ng-repeat="lift in lifts_desc">
         {{ lift.name }}: {{lift.description}}
       </li>
