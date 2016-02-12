@@ -1,9 +1,8 @@
 from flask import *
 import database
 
-main = Blueprint('main', __name__, template_folder='views')
+main = Blueprint('main', __name__)
 
 @main.route('/')
 def main_route():
-  """ Just display the public albums """
-  return "Hello world"
+	return redirect( url_for('static', filename='js/index.html') )

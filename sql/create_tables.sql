@@ -24,14 +24,16 @@ CREATE TABLE lift_variants (
 CREATE TABLE users (
   user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
-  facebook_id VARCHAR(255)
+  facebook_id VARCHAR(255),
+  lastlogin DATETIME
 );
 
 /*Anything else to add here?*/
 CREATE TABLE workouts (
   workout_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   user_id INT REFERENCES users,
-  lift_id VARCHAR(10) REFERENCES lifts,
+  short_name VARCHAR(10) REFERENCES lifts,
+  variant_short_name VARCHAR(10) REFERENCES lifts,
   workout_date DATE,
   weight INT,
   reps INT,
