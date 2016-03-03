@@ -1,7 +1,12 @@
-# weight_app
-My competitor to strstd and strengthcalc
+# StrengthTracking
 
-- This is my first pass at an app
-- Planning on using raw codeigniter php
-- Facebook login https://developers.facebook.com/docs/php/howto/example_facebook_login/5.0.0
-- Some kinda of javascript charting lib - fusion charts, high charts, etc.
+After strstd.com went down, there wasn't anything to track workouts and strength progres...
+So I decided to make my own
+
+It uses
+- Python flask to build a RESTful backend
+- MySQL for the DB
+- AngularJS for the front
+
+
+
