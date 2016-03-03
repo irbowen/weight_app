@@ -9,7 +9,7 @@ app.config(function (ezfbProvider) {
 });
 
 app.controller('myController', function($scope, $http, ezfb) {
-  $scope.msg = "Sup, bruh?";
+  $scope.msg = "Temp msg";
 
   function updateLoginStatus (more) {
     ezfb.getLoginStatus(function (res) {
@@ -23,6 +23,8 @@ app.controller('myController', function($scope, $http, ezfb) {
       $scope.user = res;
       $scope.name = res.name;
       $scope.userid = res.id;
+      console.log($scope);
+      createUser();
     });
   }
 
@@ -37,6 +39,24 @@ app.controller('myController', function($scope, $http, ezfb) {
       }
     }, {'scope' : 'public_profile, email'});
   };
+
+  function createUser() {
+    console.log($scope);
+    var data = {
+      name : $scope.name,
+      userid : $scope.userid
+    };
+    console.log("Here is the data");
+    console.log(data);
+    $http.post('http://localhost:4000/api/user', data).then(
+      function(results) {
+        console.log(results);
+      },
+      function(error) {
+        console.log("error");
+      }
+    );
+  }
 
   $scope.logout = function () {
     ezfb.logout(function () {

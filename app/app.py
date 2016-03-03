@@ -8,6 +8,7 @@ app = Flask(__name__, template_folder='templates')
 PREFIX = "/api"
 
 app.register_blueprint(controllers.main)
+app.register_blueprint(controllers.user, url_prefix = PREFIX)
 app.register_blueprint(controllers.login, url_prefix = PREFIX)
 app.register_blueprint(controllers.lifts, url_prefix = PREFIX)
 

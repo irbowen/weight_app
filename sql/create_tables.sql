@@ -25,7 +25,7 @@ CREATE TABLE users (
   user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(255),
   facebook_id VARCHAR(255),
-  lastlogin DATETIME
+  lastlogin DATETIME DEFAULT NOW()
 );
 
 /*Anything else to add here?*/

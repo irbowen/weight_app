@@ -5,4 +5,6 @@ main = Blueprint('main', __name__)
 
 @main.route('/')
 def main_route():
-	return redirect( url_for('static', filename='js/index.html') )
+	return send_file('static/js/index.html')
+
+
