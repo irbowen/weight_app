@@ -17,21 +17,24 @@
     <script src="static/js/app/controllers/workoutController.js"></script>
     <script src="static/js/app/factories/liftFactory.js"></script>
 
-    <style type="text/css">
-      body { background: MEDIUMAQUAMARINE !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-    </style>
   </head>
 
   <body ng-controller="userController">
     <div class="container">
 
       <div ng-include src="'static/js/app/partials/navbar.html'"></div>
-      <div ng-include src="'static/js/app/partials/fb_login.html'"></div>
 
-        
-      <div ng-hide="loginStatus.status != 'connected'">
-        <div class="col-md-9">
-          <div ng-view></div>
+      <div class="container center">
+        <div ng-hide="loginStatus.status == 'connected'">
+          <div ng-include src="'static/js/app/partials/fb_login.html'"></div>
+        </div>
+      </div>
+      <div class="well"> Sup </div>
+      <div class="container well-lg center">
+        <div ng-hide="loginStatus.status != 'connected'">
+          <div class="col-md-9">
+            <div ng-view></div>
+          </div>
         </div>
       </div>
 

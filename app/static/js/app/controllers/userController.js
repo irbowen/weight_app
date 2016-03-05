@@ -42,8 +42,7 @@ app.controller('userController',
     };
     $http.post('/api/user', data).then(
       function(results) {
-        console.log("Results from user create: ")
-        console.log(results.data);
+        console.log("User create succesful!");
       },
       function(error) {
         console.log("error");
@@ -54,7 +53,7 @@ app.controller('userController',
   function sessionLogin() {
     $http.post('/api/login', { userid : $scope.userid }).then(
       function (results) {
-        console.log(results);
+        console.log("Login succesful!");
       },
       function (error) {
         console.log("err");

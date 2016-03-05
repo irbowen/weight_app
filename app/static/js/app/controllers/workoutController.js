@@ -16,7 +16,6 @@ app.controller('workoutController',
 
   $scope.verifyData = function (data) {
     var errors = [];
-    console.log(data.weight);
     if (data.weight <= 0) {
       errors.push("Weight must be greater than zero.");
     }
@@ -26,6 +25,7 @@ app.controller('workoutController',
     if (data.sets <= 0) {
       errors.push("Sets must be greater than zero.");
     }
+    console.log(errors);
     if (errors.length > 0) {
       errors.push("Please fix the errors listed.");
       return false;
@@ -34,8 +34,6 @@ app.controller('workoutController',
   };
 
   $scope.submit_workout = function () {
-    console.log("Adding a workout");
-
 
     var data = {
       userid : $scope.userid,
