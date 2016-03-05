@@ -1,8 +1,16 @@
 <div>
 
-<form>
-<input type="date" name="workout_date" ng-model="example.value" placeholder="yyyy-MM-dd" required />
-
+<form ng-submit="submit_workout()" ng-controller="workoutController" ng-hide="loginStatus.status != 'connected'">
+    Workout Date: <input type="date" ng-model="date" name="date" placeholder="yyyy-MM-dd" required /> <br/>
+    Lift: 
+        <select ng-model="lift" name="lift" required>
+            <option ng-repeat="lift in lifts"> {{ lift.name }} </option>
+        </select> <br/>
+    Weight: <input type="number" ng-model="weight" name="weight" required /> <br/>
+    Reps: <input type="number" ng-model="reps" name="reps" required /> <br/>
+    Sets: <input type="number" ng-model="sets" name="sets" required /> <br/>
+    Notes: <input type="text" ng-model="notes" name="notes" /> <br/>
+    <input type="submit" name="add" value="Submit" />
 </form>
 
 </div>

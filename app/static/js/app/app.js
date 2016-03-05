@@ -23,7 +23,6 @@ app.controller('myController', function($scope, $http, ezfb) {
       $scope.user = res;
       $scope.name = res.name;
       $scope.userid = res.id;
-      console.log($scope);
       createUser();
     });
   }
@@ -46,9 +45,7 @@ app.controller('myController', function($scope, $http, ezfb) {
       name : $scope.name,
       userid : $scope.userid
     };
-    console.log("Here is the data");
-    console.log(data);
-    $http.post('http://localhost:4000/api/user', data).then(
+    $http.post('/api/user', data).then(
       function(results) {
         console.log(results);
       },
@@ -65,7 +62,7 @@ app.controller('myController', function($scope, $http, ezfb) {
   };
 
   $scope.get_lifts = function() {
-    $http.get('http://localhost:4000/api/lifts').then(
+    $http.get('/api/lifts').then(
       function(results) {
         $scope.lifts = results.data;
       },
@@ -76,7 +73,7 @@ app.controller('myController', function($scope, $http, ezfb) {
   }
 
   $scope.get_lifts_description = function() {
-    $http.get('http://localhost:4000/api/lifts/desc').then(
+    $http.get('/api/lifts/desc').then(
       function(results) {
         $scope.lifts_desc = results.data;
       },

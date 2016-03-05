@@ -8,7 +8,7 @@ lifts = Blueprint('lifts', __name__, template_folder='views')
 def get_lifts_route():
   """ Return all of the primary lists """
   cur = db.get_cursor()
-  cur.execute("SELECT name FROM lifts ORDER BY short_name")
+  cur.execute("SELECT name, short_name FROM lifts ORDER BY short_name")
   lift_names = cur.fetchall()
   return json.dumps(lift_names)
 
@@ -36,6 +36,6 @@ def get_lift_desc_route(short_name):
 def get_lifts_desc_route():
   """ Return all of the primary lists  with their description"""
   cur = db.get_cursor()
-  cur.execute("SELECT name, description FROM lifts ORDER BY short_name")
+  cur.execute("SELECT name, short_name, description FROM lifts ORDER BY short_name")
   lift_names = cur.fetchall()
   return json.dumps(lift_names)
