@@ -1,12 +1,13 @@
 <!doctype html>
 
-<html ng-app="myApp">
+<html ng-app="weightApp">
 
   <head>
     <title>My Angular App</title>
-    
+    <base href="/">
     <!-- Libs -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"> </script>
     <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     
@@ -22,12 +23,18 @@
   </head>
 
   <body ng-controller="userController">
-    <div class="container fluid center">
-      <button class="btn btn-primary" ng-click="login()" ng-hide="loginStatus.status == 'connected'">Connect with Facebook</button>
+    <div class="container">
+
+      <div ng-include src="'static/js/app/partials/navbar.html'"></div>
+      <div ng-include src="'static/js/app/partials/fb_login.html'"></div>
+
+        
       <div ng-hide="loginStatus.status != 'connected'">
-        <div ng-include src="'static/js/app/partials/title.html'"></div>
-        <div ng-include src="'static/js/app/partials/add_workout.html'"></div>
+        <div class="col-md-9">
+          <div ng-view></div>
+        </div>
       </div>
+
     </div>
   </body>
 
