@@ -1,6 +1,20 @@
-app.controller('workoutController', function($scope, $http, ezfb) {
+app.controller('workoutController', 
+  function($scope, $http, ezfb, liftFactory) {
 
-    $scope.submit_workout = function () {
+  getLifts();
+
+  function getLifts() {
+    liftFactory.get_lifts().then(
+      function (results) {
+        $scope.lifts = results.data;
+      },
+      function (error) {
+        console.log("Error");
+      }
+    );
+  }
+
+  $scope.submit_workout = function () {
     console.log("Adding a workout");
     var data = {
       name : $scope.name,
