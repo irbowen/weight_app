@@ -20,7 +20,11 @@ app.controller('workoutController',
       name : $scope.name,
       userid : $scope.userid,
       date : $scope.date,
-      weight : $scope.weight
+      short_name : $scope.lift_name,
+      weight : $scope.weight,
+      reps : $scope.reps,
+      sets : $scope.sets,
+      notes : $scope.notes
     };
     console.log(data);
     $http.post('/api/workout/add', data).then(

@@ -4,7 +4,7 @@ import json
 
 workouts = Blueprint('workouts', __name__, template_folder='views')
 
-@workouts.route('/workout/add')
+@workouts.route('/workout/add', methods=['POST'])
 def add_workout_route():
   """ Add a workout """
   cur = db.get_cursor()
