@@ -18,6 +18,8 @@ app.controller('userController',
       $scope.name = res.name;
       $scope.userid = res.id;
       createUser();
+      sessionLogin();
+      getLiftData();
     });
   }
 
@@ -45,6 +47,29 @@ app.controller('userController',
       },
       function(error) {
         console.log("error");
+      }
+    );
+  }
+
+  function sessionLogin() {
+    $http.post('/api/login', { userid : $scope.userid }).then(
+      function (results) {
+        console.log(results);
+      },
+      function (error) {
+        console.log("err");
+      }
+    );
+  }
+
+  function getLiftData() {
+    $http.get('/api/workouts/recent').then(
+      function (results) {
+        $scope.best_lift = results.data.best_lift;
+        $scope.recent_lift = results.data.recent_lift;
+      },
+      function (error) {
+        console.log("Errorrrr");
       }
     );
   }

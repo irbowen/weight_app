@@ -13,6 +13,9 @@ app.config(function (ezfbProvider, $routeProvider, $locationProvider) {
     .when('/workout', {
       templateUrl : 'static/js/app/partials/add_workout.html',
       controller : 'workoutController'
+    })
+    .otherwise({
+      redirectTo: '/'
     });
 
   ezfbProvider.setInitParams({
