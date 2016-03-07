@@ -28,9 +28,23 @@ def add_workout_route():
 @workouts.route('/workouts/all')
 def get_all_workouts_route():
   """ Gets all of a users workouts """
-  cur = db.get_cursor()
-  print request.get_json()
-  return cur.fetchall()
+  print session
+  if 'userid' in session:
+    cur = db.get_cursor()
+    userid = session['userid']
+    sql = """
+      SELECT users.user_id, lifts.name, workout_date, weight, reps, sets
+      FROM workouts, lifts, users
+      WHERE workouts.short_name = lifts.short_name AND
+        workouts.user_id = users.user_id AND
+        users.facebook_id = %s
+      ORDER BY workout_date
+      """ % userid
+    print sql
+    cur.execute(sql)
+    print cur.fetchall()
+    return jsonify(cur.fetchall())
+  return "Nothing"
 
 @workouts.route('/workouts/recent')
 def get_recent_workouts_route():

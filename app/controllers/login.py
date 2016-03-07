@@ -12,6 +12,7 @@ def login_route():
   if userid is None:
   	return "Error"
   session['userid'] = userid
+  print session
   return session['userid']
 
 @login.route('/logout', methods=['POST'])

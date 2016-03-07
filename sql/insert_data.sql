@@ -11,3 +11,11 @@ INSERT INTO lift_variants(short_name, variant_short_name, variant_name, descript
 ("squat", "highbar", "High Bar / Olympic Squat", "Insert details here"),
 ("bench", "flatbench", "Flat Bench", "Touch your chest!"),
 ("bench", "incline", "Incline Bench", "I only do incline, because I'm stronger on incline");
+
+INSERT INTO workouts(user_id, short_name, workout_date, weight, reps, sets) VALUES
+(10153202870797322, 'squat', '2016-03-01', 135, 5, 5), 
+(10153202870797322, 'squat', '2016-03-02', 140, 5, 5), 
+(10153202870797322, 'squat', '2016-03-03', 145, 5, 5), 
+(10153202870797322, 'squat', '2016-03-04', 150, 5, 5), 
+(10153202870797322, 'squat', '2016-03-05', 155, 5, 5), 
+(10153202870797322, 'squat', '2016-03-06', 165, 5, 5); 

@@ -14,6 +14,10 @@ app.config(function (ezfbProvider, $routeProvider, $locationProvider) {
       templateUrl : 'static/js/app/partials/add_workout.html',
       controller : 'workoutController'
     })
+    .when('/history', {
+      templateUrl : 'static/js/app/partials/history.html',
+      controller : 'workoutHistoryController'
+    })
     .otherwise({
       redirectTo: '/'
     });
