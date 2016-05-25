@@ -1,5 +1,9 @@
+/* This should probably be renamed to something like
+   'addWorkoutController'
+   */
+
 app.controller('workoutController', 
-  function($scope, $http, ezfb, liftFactory) {
+  function($scope, $http, liftFactory) {
 
   getLifts();
 
@@ -36,7 +40,7 @@ app.controller('workoutController',
   $scope.submit_workout = function () {
 
     var data = {
-      userid : $scope.userid,
+      user_id : $scope.user_id,
       date : $scope.date,
       short_name : $scope.lift_name,
       weight : $scope.weight,

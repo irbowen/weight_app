@@ -10,14 +10,14 @@ def create_user_routes():
   cur = db.get_cursor()
   data = request.get_json()
   name = data['name']
-  userid = data['userid']
-  if name is None or userid is None:
+  user_id = data['user_id']
+  if name is None or user_id is None:
     abort(404)
-  cur.execute('SELECT count(*) as user_count FROM users WHERE facebook_id = %s', [userid])
+  cur.execute('SELECT count(*) as user_count FROM users WHERE facebook_id = %s', [user_id])
   if cur.fetchone()['user_count'] == 0:
-    cur.execute('INSERT INTO users(name, facebook_id) VALUES(%s, %s)', [name, userid])
+    cur.execute('INSERT INTO users(name, facebook_id) VALUES(%s, %s)', [name, user_id])
   else:
-    cur.execute('UPDATE users SET last_login = NOW() WHERE facebook_id = %s', [userid])
-  cur.execute('SELECT name, facebook_id, last_login FROM users WHERE facebook_id = %s', [userid])
+    cur.execute('UPDATE users SET last_login = NOW() WHERE facebook_id = %s', [user_id])
+  cur.execute('SELECT name, facebook_id, last_login FROM users WHERE facebook_id = %s', [user_id])
   result = cur.fetchone()
   return jsonify(result)

@@ -1,3 +1,4 @@
+# Import everything, and then run the database init
 
 from database import *
 from workouts import *

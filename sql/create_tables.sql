@@ -13,12 +13,14 @@ CREATE TABLE lifts (
   description VARCHAR(255)
 );
 
+/*
 CREATE TABLE lift_variants (
   short_name VARCHAR(10) REFERENCES lifts,
   variant_short_name VARCHAR(10) PRIMARY KEY,
   variant_name VARCHAR(255),
   description VARCHAR(255)
 );
+*/
 
 /*Will have to chagne after fb login is done*/
 CREATE TABLE users (
@@ -31,10 +33,9 @@ CREATE TABLE users (
 /*Anything else to add here?*/
 CREATE TABLE workouts (
   workout_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  workout_date DATE,
   user_id INT REFERENCES users,
   short_name VARCHAR(10) REFERENCES lifts,
-  variant_short_name VARCHAR(10) REFERENCES lifts,
-  workout_date DATE,
   weight INT,
   reps INT,
   sets INT,

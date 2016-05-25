@@ -16,7 +16,7 @@ app.controller('userController',
     ezfb.api('/me', function (res) {
       $scope.user = res;
       $scope.name = res.name;
-      $scope.userid = res.id;
+      $scope.user_id = res.id;
       createUser();
       sessionLogin();
       getLiftData();
@@ -38,7 +38,7 @@ app.controller('userController',
   function createUser() {
     var data = {
       name : $scope.name,
-      userid : $scope.userid
+      user_id : $scope.user_id
     };
     $http.post('/api/user', data).then(
       function(results) {
@@ -51,7 +51,7 @@ app.controller('userController',
   }
 
   function sessionLogin() {
-    $http.post('/api/login', { userid : $scope.userid }).then(
+    $http.post('/api/login', { user_id : $scope.user_id }).then(
       function (results) {
         console.log("Login succesful!");
       },

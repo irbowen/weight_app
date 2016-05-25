@@ -10,18 +10,25 @@ def add_workout_route():
   cur = db.get_cursor()
   
   data = request.get_json()
-  userid = data['userid']
+  user_id = data['user_id']
   date = data['date']
   short_name = data['short_name']
   weight = data['weight']
   reps = data['reps']
   sets = data['sets']
-  notes = data['sets']
+  notes = data['notes']
 
-  #Verify lift is legit
+  print data
+  print user_id
+  # Make sure thelift exists in the database... really can't happen
   cur.execute("SELECT COUNT(*) AS count FROM lifts WHERE short_name = %s", [short_name])
   if cur.fetchone()['count'] == 0:
     abort(425)
+  cur.execute("""
+    INSERT INTO workouts 
+    (user_id, workout_date, short_name, weight, reps, sets, notes)
+    VALUES (%s, %s, %s, %s, %s, %s, %s);
+    """, [user_id, date, short_name, weight, reps, sets, notes])
 
   return "Added the workout!" 
 
@@ -29,9 +36,9 @@ def add_workout_route():
 def get_all_workouts_route():
   """ Gets all of a users workouts """
   print session
-  if 'userid' in session:
+  if 'user_id' in session:
     cur = db.get_cursor()
-    userid = session['userid']
+    user_id = session['user_id']
     sql = """
       SELECT users.user_id, lifts.name, workout_date, weight, reps, sets
       FROM workouts, lifts, users
@@ -39,7 +46,7 @@ def get_all_workouts_route():
         workouts.user_id = users.user_id AND
         users.facebook_id = %s
       ORDER BY workout_date
-      """ % userid
+      """ % user_id
     print sql
     cur.execute(sql)
     print cur.fetchall()
