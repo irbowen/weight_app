@@ -1,4 +1,8 @@
-app.controller('workoutController', 
+/*
+ * Controller for workout input
+ */
+
+ app.controller('workoutController', 
   function($scope, $http, ezfb, liftFactory) {
 
   getLifts();
