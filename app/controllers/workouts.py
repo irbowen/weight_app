@@ -41,10 +41,9 @@ def get_all_workouts_route():
     user_id = session['user_id']
     sql = """
       SELECT users.user_id, lifts.name, workout_date, weight, reps, sets
-      FROM workouts, lifts, users
+      FROM workouts, lifts 
       WHERE workouts.short_name = lifts.short_name AND
-        workouts.user_id = users.user_id AND
-        users.facebook_id = %s
+        workouts.user_id = %s 
       ORDER BY workout_date
       """ % user_id
     print sql

@@ -4,7 +4,23 @@ import json
 
 user = Blueprint('user', __name__, template_folder='views')
 
-@user.route('/user', methods=['POST'])
+def update_user_timestamp(user_id):
+  """ Pretty much what the function name says """
+  cur = db.get_cursor()
+  cur.execute('UPDATE users SET last_login = NOW() WHERE user_id = %s', [user_id])
+
+def create_user(user_id, name):
+  """ Create a new entry in the users table """
+  cur = db.get_cursor()
+  cur.execute('INSERT INTO users(user_id, name) VALUES(%s, %s)', [user_id, name])
+
+def user_exists(user_id):
+  """ Check if a given user exists """
+  cur = db.get_cursor()
+  cur.execute('SELECT count(*) as C FROM users WHERE user_id = %s', [user_id])
+  return cur.fetchone()['C'] == 1
+
+@user.route('/login', methods=['POST'])
 def create_user_routes():
   """ Creates a new user, otherwise updates the last login time """
   cur = db.get_cursor()
@@ -13,11 +29,10 @@ def create_user_routes():
   user_id = data['user_id']
   if name is None or user_id is None:
     abort(404)
-  cur.execute('SELECT count(*) as user_count FROM users WHERE facebook_id = %s', [user_id])
-  if cur.fetchone()['user_count'] == 0:
-    cur.execute('INSERT INTO users(name, facebook_id) VALUES(%s, %s)', [name, user_id])
-  else:
-    cur.execute('UPDATE users SET last_login = NOW() WHERE facebook_id = %s', [user_id])
-  cur.execute('SELECT name, facebook_id, last_login FROM users WHERE facebook_id = %s', [user_id])
+  if not user_exists(user_id):
+    create_user(user_id, name)
+  update_user_timestamp(user_id)
+  
+  cur.execute('SELECT name, user_id, last_login FROM users WHERE user_id = %s', [user_id])
   result = cur.fetchone()
   return jsonify(result)

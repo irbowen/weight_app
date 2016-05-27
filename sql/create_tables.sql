@@ -24,9 +24,8 @@ CREATE TABLE lift_variants (
 
 /*Will have to chagne after fb login is done*/
 CREATE TABLE users (
-  user_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  user_id VARCHAR(255) PRIMARY KEY,
   name VARCHAR(255),
-  facebook_id VARCHAR(255),
   last_login DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -34,7 +33,7 @@ CREATE TABLE users (
 CREATE TABLE workouts (
   workout_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   workout_date DATE,
-  user_id INT REFERENCES users,
+  user_id VARCHAR(255) REFERENCES users,
   short_name VARCHAR(10) REFERENCES lifts,
   weight INT,
   reps INT,
