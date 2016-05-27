@@ -42,6 +42,7 @@ app.controller('userController',
     };
     $http.post('/api/user', data).then(
       function(results) {
+        console.log($scope.user_id);
         console.log("User create succesful!");
       },
       function(error) {
