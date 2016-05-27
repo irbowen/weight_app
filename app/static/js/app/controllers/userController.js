@@ -17,8 +17,7 @@ app.controller('userController',
       $scope.user = res;
       $scope.name = res.name;
       $scope.user_id = res.id;
-      createUser();
-      sessionLogin();
+      createUserAndLogin();
       getLiftData();
     });
   }
@@ -35,29 +34,19 @@ app.controller('userController',
     }, {'scope' : 'public_profile, email'});
   };
 
-  function createUser() {
+  function createUserAndLogin() {
     var data = {
       name : $scope.name,
       user_id : $scope.user_id
     };
-    $http.post('/api/user', data).then(
+    $http.post('/api/login', data).then(
       function(results) {
         console.log($scope.user_id);
-        console.log("User create succesful!");
+        console.log($scope.name);
+        console.log("User login/create succesful!");
       },
       function(error) {
         console.log("error");
-      }
-    );
-  }
-
-  function sessionLogin() {
-    $http.post('/api/login', { user_id : $scope.user_id }).then(
-      function (results) {
-        console.log("Login succesful!");
-      },
-      function (error) {
-        console.log("err");
       }
     );
   }

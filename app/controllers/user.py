@@ -20,7 +20,7 @@ def user_exists(user_id):
   cur.execute('SELECT count(*) as C FROM users WHERE user_id = %s', [user_id])
   return cur.fetchone()['C'] == 1
 
-@user.route('/user', methods=['POST'])
+@user.route('/login', methods=['POST'])
 def create_user_routes():
   """ Creates a new user, otherwise updates the last login time """
   cur = db.get_cursor()
