@@ -13,9 +13,14 @@ It uses
 - Clone the repo, and run 'vagrant up'
 - That will take a few minutes - afterwards, run 'vagrant ssh'
 - Now you're in the virtual machine.  cd to '/vagrant' to see the mapped files
+- run 'source venv/bin/active' to set up the libs you'll need
 - cd into 'app/' and run python app.py to start the local webserver
 - navigate to localhost:4000
 
+
+### TODO's
+- Need to come up with lib for charting//graphing
+- I was looking at using Google charts, but I'm open to other suggestions
 
 ### File structure overview
 ```
