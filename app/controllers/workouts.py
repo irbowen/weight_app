@@ -32,25 +32,27 @@ def add_workout_route():
 
   return "Added the workout!" 
 
-@workouts.route('/workouts/all')
-def get_all_workouts_route():
+@workouts.route('/workouts/<string:user_id>')
+@workouts.route('/workouts/<string:user_id>/all')
+def get_all_workouts_route(user_id):
   """ Gets all of a users workouts """
   print session
-  if 'user_id' in session:
-    cur = db.get_cursor()
-    user_id = session['user_id']
-    sql = """
-      SELECT users.user_id, lifts.name, workout_date, weight, reps, sets
-      FROM workouts, lifts 
-      WHERE workouts.short_name = lifts.short_name AND
-        workouts.user_id = %s 
-      ORDER BY workout_date
-      """ % user_id
-    print sql
-    cur.execute(sql)
-    print cur.fetchall()
-    return jsonify(cur.fetchall())
-  return "Nothing"
+  cur = db.get_cursor()
+  sql = """
+    SELECT name, workout_date, name, weight, reps, sets
+    FROM workouts, lifts 
+    WHERE workouts.short_name = lifts.short_name AND
+      user_id = %s 
+    ORDER BY workout_date
+    """ % user_id
+  print sql
+  cur.execute(sql)
+  results = cur.fetchall()
+  print results
+  for res in results:
+    res['workout_date'] = str(res['workout_date'])
+  print results
+  return Response(json.dumps(results), mimetype='application/json')
 
 @workouts.route('/workouts/recent')
 def get_recent_workouts_route():

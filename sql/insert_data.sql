@@ -15,10 +15,7 @@ INSERT INTO lift_variants(short_name, variant_short_name, variant_name, descript
 ("bench", "incline", "Incline Bench", "I only do incline, because I'm stronger on incline");
 */
 
-INSERT INTO workouts(user_id, short_name, workout_date, weight, reps, sets) VALUES
-(10153202870797322, 'squat', '2016-03-01', 135, 5, 5), 
-(10153202870797322, 'squat', '2016-03-02', 140, 5, 5), 
-(10153202870797322, 'squat', '2016-03-03', 145, 5, 5), 
-(10153202870797322, 'squat', '2016-03-04', 150, 5, 5), 
-(10153202870797322, 'squat', '2016-03-05', 155, 5, 5), 
-(10153202870797322, 'squat', '2016-03-06', 165, 5, 5); 
+INSERT INTO workouts(user_id, short_name, workout_date, weight, reps, sets, notes) VALUES
+(10153202870797322, 'bench', '2016-05-28', 185, 5, 5, 'first time @rails'), 
+(10153202870797322, 'deadlift', '2016-05-28', 185, 5, 4, 'grip stength is failing'),  
+(10153202870797322, 'bench', '2016-06-01', 205, 5, 5, 'plus @225 3,4w/ help on last set'); 

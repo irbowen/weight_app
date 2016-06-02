@@ -14,8 +14,8 @@ app.factory("workoutFactory", ['$http', function ($http) {
     return $http.get('/api/workouts/recent');
   };
 
-  workoutFactory.get_all_workouts = function () {
-    return $http.get('/api/workouts/all');
+  workoutFactory.get_all_workouts = function (user_id) {
+    return $http.get(`/api/workouts/${user_id}/all`);
   };
 
   return workoutFactory;

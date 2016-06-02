@@ -33,6 +33,7 @@ def create_user_routes():
     create_user(user_id, name)
   update_user_timestamp(user_id)
   
+  session['user_id'] = user_id
   cur.execute('SELECT name, user_id, last_login FROM users WHERE user_id = %s', [user_id])
   result = cur.fetchone()
   return jsonify(result)
