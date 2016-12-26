@@ -1,28 +1,29 @@
 <?php
 declare(strict_types = 1);
 
+class PG_DB {
 
-function query_db() {
+  function __construct() {
+    $hostname = 'localhost';
+    $dbname = 'weight';
+    $username = 'weight';
+    $password = 'weight';
 
-  $hostname = 'localhost';
-  $dbname = 'weight';
-  $username = 'weight';
-  $password = 'weight';
-
-  $str = "pgsql:host=$hostname;port=5432;dbname=$dbname;user=$username;password=$password";
-  $db_handle = new PDO($str);
-  $db_handle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  try {
-    $query_handle = $db_handle->query('SELECT name, description FROM lifts');
-    $query_handle->setFetchMode(PDO::FETCH_ASSOC);
-    while($row = $query_handle->fetch()) {
-      echo $row['name'] . "<br/>";
-      echo $row['description'] . "<br/>";
-    }
+    $str = "pgsql:host=$hostname;port=5432;dbname=$dbname;user=$username;password=$password";
+    $this->db_handle = new PDO($str);
   }
-  catch(PDOException $e) {
-    echo $e->getMessage();
+
+  function query($query_str) {
+    $this->db_handle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    try {
+      $query_handle = $this->db_handle->query($query_str);
+      $query_handle->setFetchMode(PDO::FETCH_ASSOC);
+      return $query_handle;
+    }
+    catch(PDOException $e) {
+      echo $e->getMessage();
+    }
   }
 
 }

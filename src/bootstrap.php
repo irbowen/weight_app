@@ -6,41 +6,38 @@ require_once __DIR__ . '/database.php';
 
 $klein = new \Klein\Klein();
 
-$klein->respond('GET', '/', function () {
+$klein->respond('GET', '/home',
+  function () {
+    $db = new PG_DB();
+    $sql_query = "select name, short_name, description from lifts";
+    $result = $db->query($sql_query);
 
-  query_db();
-  /*
-  $sql_query = "select * from lifts";
-  $result = $conn->query($sql_query);
-
-  echo "<table>";
-  if ($result->num_rows > 0) {
-    echo "<tr><th>Name</th><th>Description</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-      echo "<tr><td>".$row["name"]."</td><td>".$row["description"]."</td></tr>";
+    echo "<table>";
+    if (true or $result->num_rows > 0) {
+      echo "<tr><th>Name</th><th>Description</th></tr>";
+      while ($row = $result->fetch()) {
+        echo "<tr><td>".$row["name"]."</td><td>".$row["description"]."</td></tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "0 results";
     }
-    echo "</table>";
-  } else {
-    echo "0 results";
-  }
-  $conn->close();*/
+  });
 
-});
-
-
-
-$klein->respond('GET', '/hello-world',
+$klein->respond('GET', '/phpinfo',
   function () {
- phpinfo();
-    query_db();
-});
+    phpinfo();
+  });
 
-$klein->respond('GET', '/home', 
+$klein->respond('GET', '/',
   function () {
-    $file_name = 'static/js/index.html';
-    header("X-Sendfile: $file_name");
-    header("Content-type: application/octet-stream");
-    header('Content-Disposition: attachment; filename="' . basename($file_name) . '"');
-});
+    $file_name = '../static/js/index.html';
+    include($file_name);
+  });
+
+foreach(array('workouts') as $controller) {
+  // Include all routes defined in a file under a given namespace
+  $klein->with("/api/$controller", "../src/api/$controller.php");
+}
 
 $klein->dispatch();

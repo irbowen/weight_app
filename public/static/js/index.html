@@ -1,0 +1,53 @@
+<!doctype html>
+
+<html ng-app="weightApp">
+
+  <head>
+
+    <title>My Angular App</title>
+    <base href="/">
+
+    <!-- Libs -->
+    <!-- Angular libs --> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"> </script>
+    <!-- Third party --> 
+    <script src="http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js"></script>
+    <!-- obl. boostrap --> 
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Angular files -->
+    <script src="static/js/app/app.js"></script>
+    <script src="static/js/app/controllers/userController.js"></script>
+    <script src="static/js/app/controllers/workoutController.js"></script>
+    <script src="static/js/app/controllers/workoutHistoryController.js"></script>
+    <script src="static/js/app/factories/liftFactory.js"></script>
+    <script src="static/js/app/factories/workoutFactory.js"></script>
+
+  </head>
+
+  <body ng-controller="userController">
+    <div class="container">
+
+      <div ng-include src="'static/js/app/partials/navbar.html'"></div>
+
+      <div class="container center">
+        <div ng-hide="loginStatus.status == 'connected'">
+          <div ng-include src="'static/js/app/partials/fb_login.html'"></div>
+        </div>
+      </div>
+      <!--
+        <div class="well"> Sup </div>
+      -->
+      <div class="container well-lg center">
+        <div ng-hide="loginStatus.status != 'connected'">
+          <div class="col-md-9">
+            <div ng-view></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </body>
+
+</html>
