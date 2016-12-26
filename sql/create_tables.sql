@@ -26,12 +26,12 @@ CREATE TABLE lift_variants (
 CREATE TABLE users (
   user_id VARCHAR(255) PRIMARY KEY,
   name VARCHAR(255),
-  last_login DATETIME DEFAULT CURRENT_TIMESTAMP
+  last_login timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
 /*Anything else to add here?*/
 CREATE TABLE workouts (
-  workout_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  workout_id serial PRIMARY KEY,
   workout_date DATE,
   user_id VARCHAR(255) REFERENCES users,
   short_name VARCHAR(10) REFERENCES lifts,

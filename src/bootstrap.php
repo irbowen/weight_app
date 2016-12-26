@@ -8,13 +8,8 @@ $klein = new \Klein\Klein();
 
 $klein->respond('GET', '/', function () {
 
-  $servername = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "weight";
-
-  $conn = new mysqli($servername, $username, $password, $dbname);
-
+  query_db();
+  /*
   $sql_query = "select * from lifts";
   $result = $conn->query($sql_query);
 
@@ -28,14 +23,24 @@ $klein->respond('GET', '/', function () {
   } else {
     echo "0 results";
   }
-  $conn->close();
+  $conn->close();*/
 
 });
 
 
 
-$klein->respond('GET', '/hello-world', function () {
-  query_db();
+$klein->respond('GET', '/hello-world',
+  function () {
+ phpinfo();
+    query_db();
+});
+
+$klein->respond('GET', '/home', 
+  function () {
+    $file_name = 'static/js/index.html';
+    header("X-Sendfile: $file_name");
+    header("Content-type: application/octet-stream");
+    header('Content-Disposition: attachment; filename="' . basename($file_name) . '"');
 });
 
 $klein->dispatch();

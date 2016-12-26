@@ -1,15 +1,17 @@
 <?php
 declare(strict_types = 1);
 
+
 function query_db() {
 
-  $host = "localhost";
-  $username = "root";
-  $password = "root";
-  $dbname = "weight";
+  $hostname = 'localhost';
+  $dbname = 'weight';
+  $username = 'weight';
+  $password = 'weight';
 
-  $db_handle = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-  $db_handle->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+  $str = "pgsql:host=$hostname;port=5432;dbname=$dbname;user=$username;password=$password";
+  $db_handle = new PDO($str);
+  $db_handle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   try {
     $query_handle = $db_handle->query('SELECT name, description FROM lifts');

@@ -1,20 +1,16 @@
-sudo apt-get update
+
+# First, we update all the things
+sudo apt update
 
 # Install the only editors you'll ever need
-sudo apt install vim emacs --yes
-sudo apt install php7.0 --yes
+sudo apt-get install vim emacs --yes
 
+# PHP and Postgres
+sudo apt-get install php7.0 php7.0-fpm --yes
+sudo apt-get install postgresql postgresql-contrib --yes
+sudo apt-get install php7.0-pgsql --yes
 
-# By default, while installing MySQL, there will be a blocking prompt asking you to enter the password
-# Next two lines set the default password of root so there is no prompt during installation
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
-sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
+# nginx
+sudo apt-get -y install nginx
+sudo service nginx start
 
-# Install MySQL server with the default argument --yes
-sudo apt-get install mysql-server --yes
-
-# Go to working directory
-# This folder is synced on the VM with your local directory where the Vagrantfile is
-cd /vagrant/sql
-sh ./setup_database.sh
-cd ..
