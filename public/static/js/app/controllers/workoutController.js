@@ -1,23 +1,26 @@
+
 /* This should probably be renamed to something like
-   'addWorkoutController'
-   */
+   'addWorkoutController' */
 
-app.controller('workoutController', 
-  function($scope, $http, liftFactory) {
+app.controller('workoutController', function($scope, $http, liftFactory) {
 
+  // Load the available lifts into the dropdown menu
   getLifts();
 
+  // If the function succedes, load the lift data into scope so that the
+  // view will be update with the lifts
   function getLifts() {
     liftFactory.get_lifts().then(
-      function (results) {
-        $scope.lifts = results.data;
-      },
-      function (error) {
-        console.log("Error");
-      }
-    );
+        function (results) {
+          $scope.lifts = results.data;
+        },
+        function (error) {
+          console.log("Error");
+        }
+        );
   }
 
+  // More verification here TODO
   $scope.verifyData = function (data) {
     var errors = [];
     if (data.weight <= 0) {
@@ -51,14 +54,14 @@ app.controller('workoutController',
 
     if ($scope.verifyData(data)) {
       console.log(data);
-      $http.post('/api/workout/add', data).then(
-        function (results) {
-          console.log("Workout posted!");
-        },
-        function (error) {
-          console.log(error);
-        }
-      );
+      $http.post('/api/workout/add/', data).then(
+          function (results) {
+            console.log("Workout posted!");
+          },
+          function (error) {
+            console.log(error);
+          }
+          );
     }
 
   };

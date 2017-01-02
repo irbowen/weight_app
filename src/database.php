@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types = 1);
 
 class PG_DB {
@@ -13,6 +14,8 @@ class PG_DB {
     $this->db_handle = new PDO($str);
   }
 
+  /* Handy function for doing queries. Probably a better
+   * idea to use the raw pdo interface */
   function query($query_str) {
     $this->db_handle->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

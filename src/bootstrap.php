@@ -1,8 +1,12 @@
 <?php
-declare(strict_types = 1);
-require_once __DIR__ . '/../vendor/autoload.php';
 
+declare(strict_types = 1);
+
+require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/database.php';
+
+define('LANDING_PAGE','../static/js/index.html');
+define('API_ROUTES', ['workouts', 'lifts']);
 
 $klein = new \Klein\Klein();
 
@@ -31,12 +35,11 @@ $klein->respond('GET', '/phpinfo',
 
 $klein->respond('GET', '/',
   function () {
-    $file_name = '../static/js/index.html';
-    include($file_name);
+    include(LANDING_PAGE);
   });
 
-foreach(array('workouts') as $controller) {
-  // Include all routes defined in a file under a given namespace
+// Include all routes defined in a file under a given namespace
+foreach (API_ROUTES as $controller) {
   $klein->with("/api/$controller", "../src/api/$controller.php");
 }
 
