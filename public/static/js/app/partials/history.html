@@ -1,6 +1,28 @@
 <div ng-controller="workoutHistoryController">
-History of workouts will apear here
+  History of workouts will apear here
 
-hello, {{name}}
-{{all_workouts}}
+  hello, {{name}}
+  <table class="table table-striped table-bordered">
+    <thead>
+      <tr>
+        <td>Weight</td>
+        <td>Reps</td>
+        <td>Sets</td>
+        <td>Lifts</td>
+        <td>Date</td>
+        <td>Notes</td>
+      </tr>
+    </thead>
+    <tbody ng:repeat="workout in all_workouts.all_workouts">
+      <tr>
+        <td>{{workout['0']}}</td>
+        <td>{{workout['1']}}</td>
+        <td>{{workout['2']}}</td>
+        <td>{{workout['5']}}</td>
+        <td>{{workout['4']}}</td>
+        <td>{{workout['3']}}</td>
+      </tr>
+    </tbody>
+  </table>
+
 </div>

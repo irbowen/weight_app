@@ -15,7 +15,7 @@ app.factory("workoutFactory", ['$http', function ($http) {
   };
 
   workoutFactory.get_all_workouts = function (user_id) {
-    return $http.get(`/api/workouts/${user_id}/all`);
+    return $http.get('/api/workouts/all/');
   };
 
   return workoutFactory;
