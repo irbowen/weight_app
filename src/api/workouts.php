@@ -31,11 +31,15 @@ $this->respond('GET', '/recent/',
 
 $this->respond('POST', '/add/',
   function ($request, $response, $service, $app) {
+
+    $post_params = json_decode(trim(file_get_contents('php://input')), true);
+    extract($post_params);
     $insert_stmt = 'INSERT INTO workouts(workout_date, user_id, short_name, weight, reps, sets, notes) VALUES';
     $insert_stmt .= '(:date, :user_id, :short_name, :weight, :reps, :sets, :notes)';
+
     $prepared_stmt = $app->db->prepare($insert_stmt);
-    $prepared_stmt->execute(['date' => $date, 'short_name' => $short_name,
-      'reps' => $reps, 'sets' => $sets, 'user_id' => $user_id, 'weight' => $weight]);
+    $prepared_stmt->execute(['date' => $date, 'short_name' => $short_name,'reps' => $reps,
+      'sets' => $sets, 'user_id' => $user_id, 'weight' => $weight, 'notes' => $notes]);
     $response->json(['status' => 'good']);
   });
 

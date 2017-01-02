@@ -52,10 +52,14 @@ app.controller('workoutController', function($scope, $http, liftFactory) {
       notes : $scope.notes
     };
 
+    if (!data['notes']) {
+      data['notes'] = 'nothing';
+    }
     if ($scope.verifyData(data)) {
       console.log(data);
-      $http.post('/api/workout/add/', data).then(
+      $http.post('/api/workouts/add/', data).then(
           function (results) {
+            console.log(results);
             console.log("Workout posted!");
           },
           function (error) {
