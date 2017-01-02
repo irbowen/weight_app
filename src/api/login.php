@@ -17,13 +17,14 @@ $check_login = function ($request, $response, $service, $app) {
 };
 
 $login = function ($request, $response, $service, $app) {
-  if (session_status() == PHP_SESSION_ACTIVE && array_key_exists('user_id', $_SESSION)) {
-    $response->json(['logged_in' => 'true', 'user_id' => $_SESSION['user_id']]);
+  if (array_key_exists('user_id', $_SESSION) && !is_null($_SESSION['user_id'])) {
+    $response->json(['logged_in' => 'false', 'user_id' => $_SESSION['user_id']]);
   }
   else {
     // Get the token, update the login time in the database
-    $user_id = $request->param('user_id');
-    $name = $request->param('name');
+    $post_params = json_decode(trim(file_get_contents('php://input')), true);
+    $user_id = $post_params['user_id'];
+    $name = $post_params['name'];
 
     // Update the last login timestamp
     $update_stmt = 'UPDATE users SET last_login = NOW() WHERE user_id = :user_id';

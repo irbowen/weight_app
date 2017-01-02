@@ -15,7 +15,7 @@ $this->respond('GET', '/max/',
     $prepared_stmt = $app->db->prepare($query);
     $prepared_stmt->execute(['user_id' => $user_id]);
     $results = $prepared_stmt->fetch();
-    $response->json(['best_lift' => $results['max']]);
+    $response->json(['user_id' => $user_id, 'best_lift' => $results['max']]);
   });
 
 // Match an integer as id on:
@@ -29,7 +29,7 @@ $this->respond('GET', '/recent/',
     $response->json(['recent_lift' => $prepared_stmt->fetch()['weight']]);
   });
 
-$this->respond('POST', '/add',
+$this->respond('POST', '/add/',
   function ($request, $response, $service, $app) {
     $insert_stmt = 'INSERT INTO workouts(workout_date, user_id, short_name, weight, reps, sets, notes) VALUES';
     $insert_stmt .= '(:date, :user_id, :short_name, :weight, :reps, :sets, :notes)';

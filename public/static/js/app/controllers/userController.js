@@ -11,7 +11,6 @@ app.controller('userController',
         ezfb.login(function (res) {
           if (res.authResponse) {
             updateLoginStatus(updateMe);
-            createUserAndLogin();
           }
           else {
             console.log("error");
@@ -37,6 +36,7 @@ app.controller('userController',
           $scope.user = res;
           $scope.name = res.name;
           $scope.user_id = res.id;
+          createUserAndLogin();
         });
       }
 
@@ -49,13 +49,14 @@ app.controller('userController',
           name : $scope.name,
           user_id : $scope.user_id
         };
+        console.log(data);
         $http.post('/api/login/', data).then(
             function(results) {
               console.log(results);
               console.log($scope.user_id);
               console.log($scope.name);
               console.log("User login/create succesful!");
-            getLiftData();
+              getLiftData();
             },
             function(error) {
               console.log("error");
@@ -68,6 +69,14 @@ app.controller('userController',
             function (results) {
               console.log(results.data);
               $scope.best_lift = results.data.best_lift;
+            },
+            function (error) {
+              console.log("Errorrrr");
+            });
+        $http.get('/api/workouts/recent/').then(
+            function (results) {
+              console.log(results.data);
+              $scope.recent_lift = results.data.recent_lift;
             },
             function (error) {
               console.log("Errorrrr");
