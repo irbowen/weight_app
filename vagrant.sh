@@ -15,6 +15,11 @@ sudo apt-get install php7.0-pgsql --yes
 # as well as create the database
 # You do not need to edit the php.ini file though
 
+sudo apt-get install git
+sudo apt-get install nodejs npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+
+sudo apt-get install php7.0-pgsql --yes
 
 # nginx
 sudo apt-get -y install nginx

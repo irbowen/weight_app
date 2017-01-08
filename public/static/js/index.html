@@ -4,7 +4,7 @@
 
   <head>
 
-    <title>My Angular App</title>
+    <title>My first angular weightlifting app</title>
     <base href="/">
 
     <!-- Libs -->
@@ -21,8 +21,12 @@
     <script src="static/js/app/controllers/userController.js"></script>
     <script src="static/js/app/controllers/workoutController.js"></script>
     <script src="static/js/app/controllers/workoutHistoryController.js"></script>
+
+    <script src="static/js/app/directives/ng-google-chart.js"></script>
+
     <script src="static/js/app/factories/liftFactory.js"></script>
     <script src="static/js/app/factories/workoutFactory.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
 
   </head>
 
@@ -32,13 +36,12 @@
       <div ng-include src="'static/js/app/partials/navbar.html'"></div>
 
       <div class="container center">
+
         <div ng-hide="loginStatus.status == 'connected'">
           <div ng-include src="'static/js/app/partials/fb_login.html'"></div>
         </div>
       </div>
-      <!--
-        <div class="well"> Sup </div>
-      -->
+
       <div class="container well-lg center">
         <div ng-hide="loginStatus.status != 'connected'">
           <div class="col-md-9">
@@ -46,6 +49,8 @@
           </div>
         </div>
       </div>
+
+
 
     </div>
   </body>

@@ -5,7 +5,7 @@ declare(strict_types = 1);
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/database.php';
 
-define('LANDING_PAGE','../static/js/index.html');
+define('LANDING_PAGE', '../static/js/index.html');
 define('API_ROUTES', ['workouts', 'lifts', 'login']);
 
 $klein = new \Klein\Klein();
@@ -49,7 +49,8 @@ $klein->respond('GET', '/phpinfo',
 
 $klein->respond('GET', '/',
   function () {
-    include(LANDING_PAGE);
+    header('Location: ' . LANDING_PAGE);
+    exit(0);
   });
 
 // Include all routes defined in a file under a given namespace
