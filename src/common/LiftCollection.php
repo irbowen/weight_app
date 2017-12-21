@@ -14,8 +14,9 @@ require_once('LiftType.php');
 
 // Constants to access every lift in the collection
 // Ideally, this would be in an enum, but php...
-define('SQUAT', 'squat');
-define('BENCH', 'bench');
+const SQUAT = 'squat';
+const BENCH = 'bench';
+
 
 // On construction, builds an array of objects for each lift, 
 // so this shouldn't be done often

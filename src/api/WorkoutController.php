@@ -1,14 +1,46 @@
-<?php
-
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 
 require_once __DIR__ . '/../../vendor/autoload.php';
-require_once __DIR__ . '/../database.php';
+
+/* 
+ * This is the translater class - it receives incoming request objects,
+ * and translate the HTTP request into a nice, clean, friendly for the
+ * underlying storage system
+ * 
+ * @authoer Isaac Bowen bowen.isaac@gmail.com 
+ */
+class WorkoutController {
+
+    WorkoutStorage $work_storage;
+    Session $session;
+
+    public function __construct(WorkoutStorage $work_storage, Session $session) {
+        $this->work_storage = $work_storage;
+        $this->session = session;
+    }
+
+    public function add(Request $request, Response $response) {
+
+    }
+
+    public function getAllWorkouts(Request $request, Response $response) {
+
+    }
+
+    public function getMaxWorkout(Request $request, Response $response) {
+      // TODO
+    }
+
+    public function getMostRecentWorkout(Request $request, Response $response) {
+      // TODO
+    }
+}
+
 
 
 // Match an integer as id on:
 // /api/workouts/max/USERID
-$this->respond('GET', '/max/',
+$this->respond('GET', '/max/', WorkoutAPI::max
   function ($request, $response, $service, $app) {
     $user_id = $_SESSION['user_id'];
     $query = 'SELECT MAX(weight) AS max FROM workouts WHERE user_id = :user_id';

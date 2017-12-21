@@ -1,12 +1,12 @@
 
 Vagrant.configure(2) do |config|
 
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "hashicorp/precise64"
   config.vm.network "forwarded_port", guest: 8500, host: 8500
 
   config.vm.provider "virtualbox" do |v|
-    v.name = "devbox"
-    v.cpus = 4
+    v.name = "weight_app_devbox"
+    v.cpus = 2
     v.memory = 4096
   end
 
